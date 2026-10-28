@@ -10,11 +10,11 @@
   ],
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch --env-file .env.development.local src/index.ts",
     "build": "pnpm run clean && tsc",
     "prepack": "pnpm run build",
     "test": "vitest run",
-    "start": "tsx ./src/index.ts"
+    "start:dev": "tsx --env-file .env.development.local ./src/index.ts"
   },
   "keywords": [],
   "author": "",

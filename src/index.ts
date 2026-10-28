@@ -1,15 +1,27 @@
 #!/usr/bin/env node
 
-import { startCli } from "./cli.js";
+import { startAgent, initPrompt } from "./agent/index.js";
+import { Log } from "./basic/log.js";
 
-startCli(process.argv.slice(2));
+// import { startCli } from "./cli.js";
 
-process.on("uncaughtException", (err) => {
-    console.error("Uncaught Exception:", err);
-    process.exit(1);
-});
+// startCli(process.argv.slice(2));
 
-process.on("exit", () => {
-    console.log("Exiting the application.");
-    process.exit(0);
-})
+// process.on("uncaughtException", (err) => {
+//     console.error("Uncaught Exception:", err);
+//     process.exit(1);
+// });
+
+// process.on("exit", () => {
+//     console.log("Exiting the application.");
+//     process.exit(0);
+// })
+
+// console.log(process.env.APP_NAME);
+
+function initialize() {
+  Log.initialize();
+}
+
+await initPrompt();
+await startAgent();
